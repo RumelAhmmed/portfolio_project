@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Project</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .form-header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 2.5rem 0;
+            margin-bottom: 3rem;
+            color: white;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .form-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #495057;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control, .form-select {
+            padding: 0.75rem 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #6a11cb;
+            box-shadow: 0 0 0 0.25rem rgba(106, 17, 203, 0.15);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            border: none;
+            padding: 0.75rem 2rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-icon {
+            color: #6a11cb;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<!-- Form Header -->
+<div class="form-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="display-5 fw-bold mb-2">
+                    <i class="fas fa-plus-circle me-2"></i> Add New Project
+                </h1>
+                <p class="lead mb-0">Fill in the details below to add your project</p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <a href="/projects" class="btn btn-light">
+                    <i class="fas fa-arrow-left me-2"></i> Back to Projects
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Project Form -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="form-card">
+                <form th:action="@{/projects/save}" th:object="${project}" method="post">
+                    <div class="form-section">
+                        <h4 class="mb-4">
+                            <i class="fas fa-info-circle form-icon"></i> Project Information
+                        </h4>
+
+                        <div class="mb-4">
+                            <label class="form-label">Project Title</label>
+                            <input type="text" th:field="*{title}" class="form-control form-control-lg" placeholder="Enter project title" required>
+                            <small class="text-muted">Give your project a descriptive name</small>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Description</label>
+                            <textarea th:field="*{description}" class="form-control" rows="5" placeholder="Describe your project..." required></textarea>
+                            <small class="text-muted">What does this project do? What technologies did you use?</small>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Project URL</label>
+                            <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-link"></i>
+                                    </span>
+                                <input type="url" th:field="*{link}" class="form-control" placeholder="https://example.com">
+                            </div>
+                            <small class="text-muted">Link to live project or repository</small>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mt-5">
+                        <a href="/projects" class="btn btn-outline-secondary">
+                            <i class="fas fa-times me-2"></i> Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary btn-submit">
+                            <i class="fas fa-save me-2"></i> Save Project
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

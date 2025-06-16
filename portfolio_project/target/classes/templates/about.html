@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - My Portfolio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --secondary: #1e293b;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+        }
+
+        .contact-header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 6rem 0 4rem;
+            color: white;
+            margin-bottom: 3rem;
+            clip-path: ellipse(100% 100% at 50% 0%);
+        }
+
+        .contact-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            background: white;
+            overflow: hidden;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-icon i {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info-text h5 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-info-text p {
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .form-section {
+            padding: 2.5rem;
+        }
+
+        .form-control {
+            padding: 0.875rem 1.25rem;
+            border-radius: 10px;
+            border: 1px solid var(--light-gray);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.15);
+        }
+
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .btn-send {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            border: none;
+            padding: 0.875rem 2.5rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .btn-send:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .map-container {
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 992px) {
+            .contact-header {
+                padding: 5rem 0 3rem;
+                clip-path: ellipse(150% 100% at 50% 0%);
+            }
+
+            .contact-icon {
+                width: 50px;
+                height: 50px;
+                margin-right: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-header {
+                padding: 4rem 0 2rem;
+                text-align: center;
+                clip-path: ellipse(200% 100% at 50% 0%);
+            }
+
+            .contact-info {
+                margin-bottom: 3rem;
+            }
+
+            .contact-info-item {
+                margin-bottom: 1.5rem;
+            }
+
+            .form-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<!-- Contact Header -->
+<section class="contact-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-4 fw-bold mb-3">Let's Connect</h1>
+                <p class="lead mb-0">I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Content -->
+<section class="container mb-5">
+    <div class="row">
+        <div class="col-lg-5 mb-4 mb-lg-0">
+            <div class="contact-card h-100">
+                <div class="p-4">
+                    <h2 class="mb-4">Contact Information</h2>
+
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-info-text">
+                            <h5>Location</h5>
+                            <p>House 107, Road 6, Block B, Bashundhara R/A, Dhaka, Bangladesh</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-info-text">
+                            <h5>Phone Numbers</h5>
+                            <p>+880 1737 688008<br>+880 1956 705035</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info-text">
+                            <h5>Email Address</h5>
+                            <p>info.rumelahmmed1997@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <h5 class="mb-3">Connect With Me</h5>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/m.r.a114300/" target="_blank" class="social-icon" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/rumel-ahmmed-130853331/" target="_blank" class="social-icon" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/RumelAhmmed?tab=repositories" target="_blank" class="social-icon" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="mailto:info.rumelahmmed1997@gmail.com" class="social-icon" aria-label="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.837240932881!2d90.4062773154318!3d23.79086839322962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7a0e9e9a9b9%3A0x9e9a9b9d9e9a9b9!2sBashundhara%20R%2FA%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1620000000000!5m2!1sen!2sbd" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <div class="contact-card h-100">
+                <div class="form-section">
+                    <h2 class="mb-4">Send Me a Message</h2>
+                    <form id="contactForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Your Name *</label>
+                                <input type="text" class="form-control" id="name" required>
+                                <div class="invalid-feedback">Please enter your name</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Your Email *</label>
+                                <input type="email" class="form-control" id="email" required>
+                                <div class="invalid-feedback">Please enter a valid email</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject *</label>
+                            <input type="text" class="form-control" id="subject" required>
+                            <div class="invalid-feedback">Please enter a subject</div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="form-label">Your Message *</label>
+                            <textarea class="form-control" id="message" rows="6" required></textarea>
+                            <div class="invalid-feedback">Please enter your message</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-send">
+                            <i class="fas fa-paper-plane me-2"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script>
+    // Form validation
+    (function() {
+        'use strict';
+
+        const form = document.getElementById('contactForm');
+
+        form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            } else {
+                // Simulate form submission
+                event.preventDefault();
+
+                // Show success message
+                const successAlert = `
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fas fa-check-circle me-2"></i>
+                            <strong>Thank you!</strong> Your message has been sent successfully. I'll get back to you soon.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    `;
+
+                const formSection = document.querySelector('.form-section');
+                formSection.insertAdjacentHTML('afterbegin', successAlert);
+
+                // Reset form
+                form.reset();
+                form.classList.remove('was-validated');
+
+                // Scroll to top of form
+                formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            form.classList.add('was-validated');
+        }, false);
+    })();
+
+    // Animate social icons on hover
+    document.querySelectorAll('.social-icon').forEach(icon => {
+        icon.addEventListener('mouseenter', () => {
+            icon.style.transform = 'translateY(-3px) scale(1.1)';
+        });
+        icon.addEventListener('mouseleave', () => {
+            icon.style.transform = '';
+        });
+    });
+</script>
+</body>
+</html>
