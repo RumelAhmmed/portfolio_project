@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - My Portfolio</title>
+    <title>Rumel Ahmmed - Portfolio</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -216,10 +216,97 @@
             font-weight: 600;
         }
 
+        /* Academic Qualifications Section */
+        .academic-section {
+            padding: 6rem 0;
+            background-color: #f8fafc;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 25px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-light);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: -50px;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .timeline-content h3 {
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+            font-size: 1.3rem;
+        }
+
+        .timeline-content h4 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .timeline-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .timeline-result {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0;
+        }
+
+        .timeline-status {
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-bottom: 0;
+        }
+
         /* Projects Preview */
         .projects-section {
             padding: 6rem 0;
-            background-color: #f8fafc;
+            background-color: white;
         }
 
         .project-card {
@@ -311,6 +398,17 @@
             .section-title {
                 font-size: 2rem;
             }
+
+            .timeline {
+                padding-left: 40px;
+            }
+
+            .timeline-icon {
+                left: -40px;
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
         }
 
         @media (max-width: 576px) {
@@ -331,6 +429,14 @@
             .hero-image-bg {
                 width: 250px;
                 height: 250px;
+            }
+
+            .timeline-details {
+                flex-direction: column;
+            }
+
+            .timeline-details span {
+                margin-bottom: 5px;
             }
         }
     </style>
@@ -425,6 +531,68 @@
                     <h3 class="skill-title">Design & Marketing</h3>
                     <p class="skill-description">Photoshop, Illustrator, Premiere Pro, SEO, Social Media Marketing, Content Creation</p>
                     <div class="skill-badge">Creative</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Academic Qualifications Section -->
+<section class="academic-section" id="academic">
+    <div class="container">
+        <h2 class="section-title text-center" data-aos="fade-up">Academic <span class="text-highlight">Qualifications</span></h2>
+        <p class="section-subtitle text-center" data-aos="fade-up" data-aos-delay="100">My educational background and achievements</p>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="timeline">
+                    <!-- BSc -->
+                    <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3>Bachelor of Science (BSc)</h3>
+                            <h4>Computer Science & Engineering (CSE)</h4>
+                            <div class="timeline-details">
+                                <span class="timeline-date">2024 - 2028 (Expected)</span>
+                                <span class="timeline-institute">Southeast University</span>
+                            </div>
+                            <p class="timeline-status">Currently enrolled (4th Semester running)</p>
+                        </div>
+                    </div>
+
+                    <!-- Diploma -->
+                    <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h3>Diploma in Engineering</h3>
+                            <h4>Computer Engineering (CMT)</h4>
+                            <div class="timeline-details">
+                                <span class="timeline-date">2019 - 2023</span>
+                                <span class="timeline-institute">Bangladesh Polytechnic Institute</span>
+                            </div>
+                            <p class="timeline-result">CGPA: 3.79 out of 4.00</p>
+                        </div>
+                    </div>
+
+                    <!-- SSC -->
+                    <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <h3>Secondary School Certificate (SSC)</h3>
+                            <h4>Science</h4>
+                            <div class="timeline-details">
+                                <span class="timeline-date">2011 - 2016</span>
+                                <span class="timeline-institute">North Bengal Sugar Mills High School</span>
+                            </div>
+                            <p class="timeline-result">GPA: 5.00 out of 5.00</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
